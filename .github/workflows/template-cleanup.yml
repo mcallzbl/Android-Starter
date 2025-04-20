@@ -31,6 +31,8 @@ jobs:
           SAFE_NAME=$(echo $NAME | sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
           SAFE_ACTOR=$(echo $ACTOR | sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
           GROUP="com.$SAFE_ACTOR.$SAFE_NAME"
+          # 将连字符替换为空格，每个单词首字母大写，作为应用显示名称
+          DISPLAY_NAME=$(echo "$NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}1')
 
           echo "处理变量:"
           echo "NAME: $NAME"
@@ -38,6 +40,7 @@ jobs:
           echo "SAFE_NAME: $SAFE_NAME"
           echo "SAFE_ACTOR: $SAFE_ACTOR"
           echo "GROUP: $GROUP"
+          echo "DISPLAY_NAME: $DISPLAY_NAME"
 
           # Replace build.gradle.kts with $GROUP
           echo "更新 build.gradle.kts 中的包名..."
@@ -60,6 +63,46 @@ jobs:
             fi
           else
             echo "错误: app/build.gradle.kts 文件不存在"
+            exit 1
+          fi
+
+          # Replace settings.gradle.kts with $SAFE_NAME
+          echo "更新 settings.gradle.kts 中的项目名称..."
+          if [ -f "settings.gradle.kts" ]; then
+            cat settings.gradle.kts | \
+            perl -pe "s/rootProject\.name = \"android-starter\"/rootProject.name = \"$SAFE_NAME\"/g" > settings.gradle.kts.tmp
+            
+            if [ -s settings.gradle.kts.tmp ]; then
+              mv settings.gradle.kts.tmp settings.gradle.kts
+              echo "settings.gradle.kts 更新成功"
+              echo "更新后的 settings.gradle.kts 项目名称配置:"
+              grep "rootProject.name" settings.gradle.kts
+            else
+              echo "错误: settings.gradle.kts 更新失败"
+              exit 1
+            fi
+          else
+            echo "错误: settings.gradle.kts 文件不存在"
+            exit 1
+          fi
+
+          # Update application display name
+          echo "更新应用显示名称..."
+          if [ -f "app/src/main/res/values/strings.xml" ]; then
+            cat app/src/main/res/values/strings.xml | \
+            perl -pe "s|<string name=\"app_name\">.*?</string>|<string name=\"app_name\">$DISPLAY_NAME</string>|g" > app/src/main/res/values/strings.xml.tmp
+            
+            if [ -s app/src/main/res/values/strings.xml.tmp ]; then
+              mv app/src/main/res/values/strings.xml.tmp app/src/main/res/values/strings.xml
+              echo "strings.xml 更新成功"
+              echo "更新后的应用名称:"
+              grep "app_name" app/src/main/res/values/strings.xml
+            else
+              echo "错误: strings.xml 更新失败"
+              exit 1
+            fi
+          else
+            echo "错误: strings.xml 文件不存在"
             exit 1
           fi
 
