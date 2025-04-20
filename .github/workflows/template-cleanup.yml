@@ -69,8 +69,9 @@ jobs:
           # Replace settings.gradle.kts with $SAFE_NAME
           echo "更新 settings.gradle.kts 中的项目名称..."
           if [ -f "settings.gradle.kts" ]; then
+            # 使用更精确的替换模式
             cat settings.gradle.kts | \
-            perl -pe "s/rootProject\.name = \"android-starter\"/rootProject.name = \"$SAFE_NAME\"/g" > settings.gradle.kts.tmp
+            perl -pe 's/(rootProject\.name\s*=\s*)"[^"]*"/$1"'"$NAME"'"/' > settings.gradle.kts.tmp
             
             if [ -s settings.gradle.kts.tmp ]; then
               mv settings.gradle.kts.tmp settings.gradle.kts
@@ -85,6 +86,12 @@ jobs:
             echo "错误: settings.gradle.kts 文件不存在"
             exit 1
           fi
+
+          # Update .idea/.name file
+          echo "更新 .idea/.name 文件..."
+          mkdir -p .idea
+          echo "$NAME" > .idea/.name
+          echo ".idea/.name 更新成功，内容为: $(cat .idea/.name)"
 
           # Update application display name
           echo "更新应用显示名称..."
