@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
 plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
@@ -21,6 +24,11 @@ android {
     }
 
     buildTypes {
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            isDebuggable = true
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -41,10 +49,20 @@ android {
         // 配置开启buildConfig构建特性
         buildConfig = true
     }
+
+    // 自定义打包名称
+    applicationVariants.all {
+        outputs.all {
+            val currentDate = SimpleDateFormat("yyyy.MM.dd").format(Date())
+            val outputFileName = "${applicationId}_${buildType.name}_v${versionName}_${currentDate}.apk"
+            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName = outputFileName
+        }
+    }
 }
 dependencies {
     //网络请求
     implementation (libs.retrofit)
+    implementation (libs.converter.gson)
     // 依赖注入 (Hilt)
     implementation(libs.hilt.android)                // Hilt核心库
     ksp(libs.hilt.android.compiler)                  // Hilt注解处理器(KSP)
@@ -60,9 +78,6 @@ dependencies {
     implementation(libs.androidx.room.runtime)      // Room数据库核心库
     implementation(libs.androidx.room.ktx)          // Room的Kotlin扩展和协程支持
     ksp(libs.androidx.room.compiler)                // Room注解处理器(KSP)
-
-    // JSON处理
-    implementation(libs.gson)                        // Google的JSON解析库
 
     // UI组件
     implementation(libs.androidx.material.icons.extended) // Compose扩展图标库
