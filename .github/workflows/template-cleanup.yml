@@ -40,11 +40,11 @@ jobs:
           find app/src -type f -exec sed -i "s/com.mcallzbl.android_starter/$GROUP/g" {} +
 
           # Move content
-          mkdir -p app/src/main/kotlin/${GROUP//.//}
-          mkdir -p app/src/test/kotlin/${GROUP//.//}
+          mkdir -p app/src/main/java/${GROUP//.//}
+          mkdir -p app/src/test/java/${GROUP//.//}
           cp -R .github/template-cleanup/. .
-          cp -R app/src/main/kotlin/com/mcallzbl/android_starter/* app/src/main/kotlin/${GROUP//.//}/
-          cp -R app/src/test/kotlin/com/mcallzbl/android_starter/* app/src/test/kotlin/${GROUP//.//}/
+          cp -R app/src/main/java/com/mcallzbl/android_starter/* app/src/main/java/${GROUP//.//}/
+          cp -R app/src/test/java/com/mcallzbl/android_starter/* app/src/test/java/${GROUP//.//}/
 
           # Cleanup
           rm -rf \
@@ -54,8 +54,8 @@ jobs:
             .github/workflows/template-cleanup.yml \
             .github/workflows/template-verify.yml \
             .idea/icon.png \
-            src/main/kotlin/org \
-            src/test/kotlin/org \
+            app/src/main/java/org \
+            app/src/test/java/org \
             CODE_OF_CONDUCT.md \
             LICENSE
 
