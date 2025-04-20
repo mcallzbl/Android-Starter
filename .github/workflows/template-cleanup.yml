@@ -39,6 +39,30 @@ jobs:
           echo "SAFE_ACTOR: $SAFE_ACTOR"
           echo "GROUP: $GROUP"
 
+          # Replace build.gradle.kts with $GROUP
+          echo "更新 build.gradle.kts 中的包名..."
+          if [ -f "app/build.gradle.kts" ]; then
+            # 使用临时文件进行替换，避免直接修改原文件可能带来的问题
+            cat app/build.gradle.kts | \
+            perl -pe "s/namespace = \"com\.mcallzbl\.android_starter\"/namespace = \"$GROUP\"/g" | \
+            perl -pe "s/applicationId = \"com\.mcallzbl\.android_starter\"/applicationId = \"$GROUP\"/g" > app/build.gradle.kts.tmp
+            
+            # 检查临时文件是否创建成功且内容不为空
+            if [ -s app/build.gradle.kts.tmp ]; then
+              mv app/build.gradle.kts.tmp app/build.gradle.kts
+              echo "build.gradle.kts 更新成功"
+              # 显示更新后的内容进行验证
+              echo "更新后的 build.gradle.kts 包名配置:"
+              grep -E "namespace|applicationId" app/build.gradle.kts
+            else
+              echo "错误: build.gradle.kts 更新失败"
+              exit 1
+            fi
+          else
+            echo "错误: app/build.gradle.kts 文件不存在"
+            exit 1
+          fi
+
           # Replace placeholders in the template-cleanup files
           echo "替换模板文件中的占位符..."
           if [ -d ".github/template-cleanup" ]; then
