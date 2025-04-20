@@ -35,6 +35,8 @@ jobs:
           sed -i "s/%NAME%/$NAME/g" .github/template-cleanup/*
           sed -i "s/%REPOSITORY%/${GITHUB_REPOSITORY/\//\\/}/g" .github/template-cleanup/*
           sed -i "s/%GROUP%/$GROUP/g" .github/template-cleanup/*
+          sed -i "s/namespace = \"com.mcallzbl.android_starter\"/namespace = \"$GROUP\"/g" app/build.gradle.kts
+          sed -i "s/applicationId = \"com.mcallzbl.android_starter\"/applicationId = \"$GROUP\"/g" app/build.gradle.kts
 
           # Replace template package name in project files with $GROUP
           find app/src -type f -exec sed -i "s/com.mcallzbl.android_starter/$GROUP/g" {} +
@@ -45,6 +47,7 @@ jobs:
           cp -R .github/template-cleanup/. .
           cp -R app/src/main/java/com/mcallzbl/android_starter/* app/src/main/java/${GROUP//.//}/
           cp -R app/src/test/java/com/mcallzbl/android_starter/* app/src/test/java/${GROUP//.//}/
+          cp -R app/src/androidTest/java/com/mcallzbl/android_starter/* app/src/test/java/${GROUP//.//}/
 
           # Cleanup
           rm -rf \
@@ -54,8 +57,9 @@ jobs:
             .github/workflows/template-cleanup.yml \
             .github/workflows/template-verify.yml \
             .idea/icon.png \
-            app/src/main/java/org \
-            app/src/test/java/org \
+            app/src/main/java/com/mcallzbl/android_starter\
+            app/src/test/java/com/mcallzbl/android_starter \
+            app/src/androidTest/java/com/mcallzbl/android_starter \
             CODE_OF_CONDUCT.md \
             LICENSE
 
