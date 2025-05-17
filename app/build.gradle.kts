@@ -2,8 +2,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 plugins {
-    id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId = "com.mcallzbl.android_starter"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 

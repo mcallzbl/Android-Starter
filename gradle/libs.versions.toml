@@ -3,14 +3,14 @@ agp = "8.9.3"
 converterGson = "2.11.0"
 datastorePreferences = "1.1.6"
 gson = "2.11.0"
-hiltAndroidCompiler = "2.52"
-kotlin = "2.0.21"
+hiltAndroidCompiler = "2.56"
+kotlin = "2.1.10"
 coreKtx = "1.16.0"
 hiltNavigationCompose = "1.2.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-kotlinxCoroutinesAndroid = "1.9.0"
+kotlinxCoroutinesAndroid = "1.10.1"
 lifecycleRuntimeKtx = "2.9.0"
 retrofit = "2.11.0"
 activityCompose = "1.10.1"
@@ -18,6 +18,8 @@ composeBom = "2025.05.00"
 materialIconsExtended = "1.7.8"
 roomRuntime = "2.7.1"
 timber = "5.0.1"
+ksp = "2.1.10-1.0.31"
+hilt = "2.56"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,4 +54,5 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

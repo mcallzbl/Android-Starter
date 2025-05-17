@@ -134,6 +134,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
             }
         }
     }
+
 }
 
 @Composable
@@ -175,7 +176,7 @@ private fun getGreetingByTime(): String {
         in 6..11 -> "☀️ 早安！被子精已被打败，现在请战胜Bug大魔王！[6](@ref)"
         in 12..13 -> "🍱 午间播报：CPU温度≈你的便当温度，该歇会儿啦！"
         in 14..17 -> "😼 下午茶时间：如果代码能喝，现在应该是第8杯咖啡味~[1](@ref)"
-        else -> "🌃 晚安全球：'git commit'前记得保存灵魂进度哦[7](@ref)"
+        else -> "🌃 晚安全球：'git commit '前记得保存灵魂进度哦[7](@ref)"
     }
 }
 
