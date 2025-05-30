@@ -33,18 +33,23 @@ class MainActivity : BaseActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidstarterTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    containerColor = MaterialTheme.colorScheme.background
-                ) { innerPadding ->
-                    WelcomeScreen(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                            .fillMaxSize()
-                    )
-                }
+                AppScreen()
             }
         }
+    }
+}
+
+@Composable
+fun AppScreen(){
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        containerColor = MaterialTheme.colorScheme.background
+    ) { innerPadding ->
+        WelcomeScreen(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+        )
     }
 }
 
