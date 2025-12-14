@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -12,7 +13,7 @@ plugins {
 
 android {
     namespace = "com.mcallzbl.android_starter"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.mcallzbl.android_starter"
@@ -42,9 +43,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+
     buildFeatures {
         compose = true
         // 配置开启buildConfig构建特性
@@ -58,6 +57,11 @@ android {
             val outputFileName = "${applicationId}_${buildType.name}_v${versionName}_${currentDate}.apk"
             (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName = outputFileName
         }
+    }
+}
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 dependencies {
