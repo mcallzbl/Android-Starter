@@ -1,57 +1,57 @@
-# Android 快速启动模板
+# Android Quick Start Template
 
-[English](README_EN.md) | 中文
+[English](README.md) | [中文](README_zh.md)
 
-这是一个集成了常用配置和依赖的 Android 项目模板，帮助您快速开始新项目的开发。
+This is an Android project template with commonly used configurations and dependencies integrated, helping you quickly start new project development.
 
-## ✨ 特性
+## ✨ Features
 
-### 🛠 开发工具
-- ✓ KSP (Kotlin Symbol Processing) 注解处理器
-- ✓ Hilt 依赖注入框架
-- ✓ BuildConfig 已启用
-- ✓ compileSdk 35 支持最新特性
+### 🛠 Development Tools
+- ✓ KSP (Kotlin Symbol Processing)
+- ✓ Hilt Dependency Injection
+- ✓ BuildConfig Enabled
+- ✓ compileSdk 36 Support
 
-### 📱 UI 相关
+### 📱 UI Related
 - ✓ Jetpack Compose Material3 UI
-- ✓ Material Icons Extended 图标库
-- ✓ 高刷新率支持
+- ✓ Material Icons Extended
+- ✓ High Refresh Rate Support
 
-### 🔧 基础设施
-- ✓ BaseActivity 封装
-- ✓ Timber 日志工具（已在 App 类中初始化）
-- ✓ 网络权限预配置
+### 🔧 Infrastructure
+- ✓ BaseActivity Encapsulation
+- ✓ Timber Logging (Initialized in App class)
+- ✓ Network Permission Preconfigured
 
-### 💾 数据处理
-- ✓ Retrofit 网络请求
-- ✓ Room 数据库
-- ✓ Gson JSON解析
-- ✓ DataStore 轻量级存储
+### 💾 Data Processing
+- ✓ Retrofit for Networking
+- ✓ Room Database
+- ✓ Gson JSON Parsing
+- ✓ DataStore for Lightweight Storage
 
-### 🔍 调试友好
-- ✓ Debug 版本使用独立包名，可与正式版共存
-- ✓ Timber 日志工具助力调试
-- ✓ 完整的 Kotlin 协程支持
+### 🔍 Debug Friendly
+- ✓ Debug version with separate package name
+- ✓ Timber logging support
+- ✓ Full Kotlin Coroutines support
 
-## 🚀 开始使用
+## 🚀 Getting Started
 
-1. Star此项目
-2. 点击右上角Use this template
-3. 按照指引构建你的仓库
-4. 等待几秒钟，包名和项目会自动切换好
-5. 克隆到本地
-6. 开始开发您的功能
+1. Star this project
+2. Click "Use this template" in the top right
+3. Follow the guide to create your repository
+4. Wait a few seconds for automatic package name and project setup
+5. Clone to local
+6. Start developing your features
 
-## 📦 已集成依赖
+## 📦 Integrated Dependencies
 
 - **UI**: Jetpack Compose, Material3
-- **网络**: Retrofit
-- **存储**: Room, DataStore
-- **工具**: Timber, Gson
-- **架构**: Hilt, KSP
-- **异步**: Kotlin Coroutines & Flow
+- **Network**: Retrofit
+- **Storage**: Room, DataStore
+- **Tools**: Timber, Gson
+- **Architecture**: Hilt, KSP
+- **Async**: Kotlin Coroutines & Flow
 
-## 🔨 项目结构
+## 🔨 Project Structure
 
 ```
 app/
@@ -59,18 +59,19 @@ app/
 │  ├─ main/
 │  │  ├─ java/
 │  │  │  └─ com.your.package/
-│  │  │     ├─ base/           # 基础类
-│  │  │     ├─ data/           # 数据层
-│  │  │     ├─ di/             # 依赖注入
-│  │  │     ├─ ui/             # UI 组件
-│  │  └─ res/                  # 资源文件
+│  │  │     ├─ base/           # Base classes
+│  │  │     ├─ data/           # Data layer
+│  │  │     ├─ di/             # Dependency injection
+│  │  │     ├─ ui/             # UI components
+│  │  └─ res/                  # Resources
 ```
 
-## 📝 注意事项
+## 📝 Notes
 
-- Debug 版本包名后缀为 `.debug`
-- 已配置网络权限
+- Debug version has `.debug` package name suffix
+- Network permissions preconfigured
+- The project structure is simple and mainly for personal use
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交 Issue 和 Pull Request 来完善这个模板！
+Issues and Pull Requests are welcome to improve this template! 
