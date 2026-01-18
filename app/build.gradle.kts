@@ -1,7 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.text.SimpleDateFormat
-import java.util.Date
-
 plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
@@ -54,7 +50,8 @@ android {
         onVariants { variant ->
             variant.outputs.forEach { output ->
                 if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
-                    val newName = "${variant.applicationId.get()}-${variant.name}-${output.versionName.get()}.apk"
+                    val newName =
+                        "${variant.applicationId.get()}-${variant.name}-${output.versionName.get()}.apk"
                     output.outputFileName.set(newName)
                 }
             }
@@ -70,8 +67,8 @@ dependencies {
     // Navigation Compose
     implementation(libs.kotlinx.serialization.json)
     //网络请求
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
     // 依赖注入 (Hilt)
     implementation(libs.hilt.android)                // Hilt核心库
     ksp(libs.hilt.android.compiler)                  // Hilt注解处理器(KSP)
