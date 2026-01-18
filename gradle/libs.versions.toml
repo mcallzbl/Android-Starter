@@ -19,7 +19,7 @@ composeBom = "2025.12.00"
 materialIconsExtended = "1.7.8"
 roomRuntime = "2.8.4"
 timber = "5.0.1"
-ksp = "2.3.2"
+ksp = "2.3.4"
 hilt = "2.57.2"
 
 [libraries]
@@ -55,7 +55,6 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
