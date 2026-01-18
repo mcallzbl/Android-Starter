@@ -50,11 +50,14 @@ android {
     }
 
     // 自定义打包名称
-    applicationVariants.all {
-        outputs.all {
-            val currentDate = SimpleDateFormat("yyyy.MM.dd").format(Date())
-            val outputFileName = "${applicationId}_${buildType.name}_v${versionName}_${currentDate}.apk"
-            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName = outputFileName
+    androidComponents {
+        onVariants { variant ->
+            variant.outputs.forEach { output ->
+                if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
+                    val newName = "${variant.applicationId.get()}-${variant.name}-${output.versionName.get()}.apk"
+                    output.outputFileName.set(newName)
+                }
+            }
         }
     }
 }
