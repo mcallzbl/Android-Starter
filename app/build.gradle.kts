@@ -44,23 +44,21 @@ android {
         // 配置开启buildConfig构建特性
         buildConfig = true
     }
-
-    // 自定义打包名称
-    androidComponents {
-        onVariants { variant ->
-            variant.outputs.forEach { output ->
-                if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
-                    val newName =
-                        "${variant.applicationId.get()}-${variant.name}-${output.versionName.get()}.apk"
-                    output.outputFileName.set(newName)
-                }
+}
+// 自定义打包名称
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
+                val newName =
+                    "${variant.applicationId.get()}-${variant.name}-${output.versionName.get()}.apk"
+                output.outputFileName.set(newName)
             }
         }
     }
 }
 kotlin {
     compilerOptions {
-//        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 dependencies {
