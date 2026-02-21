@@ -19,7 +19,7 @@ materialIconsExtended = "1.7.8"
 roomRuntime = "2.8.4"
 timber = "5.0.1"
 ksp = "2.3.4"
-hilt = "2.59.1"
+hilt = "2.59.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
