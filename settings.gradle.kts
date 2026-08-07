@@ -24,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Android-starter"
 include(":app")
- 
+include(":updatekit")

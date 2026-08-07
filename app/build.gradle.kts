@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.mcallzbl.android_starter"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.mcallzbl.android_starter"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -63,6 +63,9 @@ kotlin {
     }
 }
 dependencies {
+    // UpdateKit
+    implementation(project(":updatekit"))
+
     // Navigation Compose
     implementation(libs.kotlinx.serialization.json)
     //网络请求

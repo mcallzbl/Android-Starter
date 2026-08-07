@@ -58,7 +58,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
     var isVisible by remember { mutableStateOf(false) }
     val greeting = getGreetingByTime()
     val scrollState = rememberScrollState()
-    
+
     LaunchedEffect(Unit) {
         delay(300)
         isVisible = true
@@ -163,7 +163,7 @@ private fun FeatureSection(
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.onSurface
             )
-            
+
             features.forEach { feature ->
                 Text(
                     text = "✓ $feature",
@@ -178,10 +178,10 @@ private fun FeatureSection(
 private fun getGreetingByTime(): String {
     return when (LocalTime.now().hour) {
         in 0..5 -> "🌙 程序员の夜：代码和星星一样闪亮，但你的黑眼圈更耀眼~"
-        in 6..11 -> "☀️ 早安！被子精已被打败，现在请战胜Bug大魔王！[6](@ref)"
+        in 6..11 -> "☀️ 早安！被子精已被打败，现在请战胜Bug大魔王！"
         in 12..13 -> "🍱 午间播报：CPU温度≈你的便当温度，该歇会儿啦！"
-        in 14..17 -> "😼 下午茶时间：如果代码能喝，现在应该是第8杯咖啡味~[1](@ref)"
-        else -> "🌃 晚安全球：'git commit '前记得保存灵魂进度哦[7](@ref)"
+        in 14..17 -> "😼 下午茶时间：如果代码能喝，现在应该是第8杯咖啡味~"
+        else -> "🌃 晚安全球：'git commit '前记得保存灵魂进度哦"
     }
 }
 

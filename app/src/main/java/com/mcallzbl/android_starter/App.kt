@@ -1,6 +1,7 @@
 package com.mcallzbl.android_starter
 
 import android.app.Application
+import com.mcallzbl.updatekit.UpdateKit
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -13,6 +14,8 @@ class App: Application() {
         } else {
             Timber.plant(ReleaseTree())
         }
+        // 初始化 UpdateKit
+        UpdateKit.initialize(this, "https://updater.mcallzbl.com")
     }
 }
 
