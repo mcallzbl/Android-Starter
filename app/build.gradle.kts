@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
@@ -20,6 +22,20 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // 发布签名：keystore.properties（gitignored）存在时自动签名，复用 MySigniture
+    signingConfigs {
+        create("release") {
+            val f = rootProject.file("keystore.properties")
+            if (f.exists()) {
+                val p = Properties().apply { f.inputStream().use { load(it) } }
+                storeFile = file(p.getProperty("storeFile"))
+                storePassword = p.getProperty("storePassword")
+                keyAlias = p.getProperty("keyAlias")
+                keyPassword = p.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         getByName("debug") {
             applicationIdSuffix = ".debug"
@@ -29,6 +45,11 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            // keystore.properties 存在即签名；否则产出 unsigned APK
+            val propsFile = rootProject.file("keystore.properties")
+            if (propsFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
